@@ -5,31 +5,39 @@ const Impact = require('./src/impact/impact');
 const SevereImpact = require('./src/severeImpact/severeImpact');
 
 const app = express();
+app.use(bodyParser.json());
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
 
 app.post('/test', async (req, res, next) => {
+  console.log (req.body);
+
   let {
     name,
     avgAge,
-    avgDailyIncomeUSD,
+    avgDailyIncomeInUSD,
     avgDailyIncomePopulation
   } = req.body.region;
+
+
   let periodType = req.body.periodType;
   let timeToElapse = req.body.timeToElapse;
   let reportedCases = req.body.reportedCases;
-  let totalHopspitalBeds = req.body.totalHopspitalBeds;
+  let totalHopspitalBeds = req.body.totalHospitalBeds;
 
   let impact = new Impact(
     reportedCases,
     timeToElapse,
     totalHopspitalBeds,
-    avgDailyIncomeUSD,
+    avgDailyIncomeInUSD,
     avgDailyIncomePopulation
   );
   let severeImpact = new SevereImpact(
     reportedCases,
     timeToElapse,
     totalHopspitalBeds,
-    avgDailyIncomeUSD,
+    avgDailyIncomeInUSD,
     avgDailyIncomePopulation
   );
 
