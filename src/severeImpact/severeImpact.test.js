@@ -1,8 +1,8 @@
 const SevereImpact = require('./severeImpact')
 
-const impact = new SevereImpact(5);
+const impact = new SevereImpact(2747, 38, 678874);
 it('test passes for correct severeImpact on currently infected', () => {
-    expect(impact.getCurrentlyInfected()).toBe(250)
+    expect(impact.getCurrentlyInfected()).toBe(137350)
 })
 
 it('test fails for wrong severeImpact on currently infected', () => {
@@ -11,5 +11,9 @@ it('test fails for wrong severeImpact on currently infected', () => {
 })
 
 it('test passes for correct getInfectionsRequestedByTime', () => { 
-    expect(impact.getInfectionsByRequestedTime(30)).toBe(256000)
+    expect(impact.getInfectionsByRequestedTime()).toBe(562585600)
+});
+
+it ('test passes for correct getSevereCasesByRequestedTime', () => {
+    expect(impact.getSevereCasesByRequestedTime()).toBe(-84150234)
 })
