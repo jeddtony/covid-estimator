@@ -1,6 +1,6 @@
 const Impact = require("./impact");
 
-const impact = new Impact(2747, 38, 678874);
+const impact = new Impact(2747, 38, 678874, 4, 0.73);
 it('test get correct currently infected', () => {
   
     expect(impact.getCurrentlyInfected()).toBe(27470)
@@ -18,4 +18,16 @@ it('test passes for correct getInfectionsRequestedByTime', () => {
 
 it ('test passes for correct getSevereCasesByRequestedTime', () => {
     expect(impact.getSevereCasesByRequestedTime()).toBe(-16639962)
+})
+
+it ('test passes for correct getCasesForICU', () => {
+    expect(impact.getCasesForICUByRequestTime()).toBe(5625856)
+})
+
+it ('test passes for correct getCasesForVentilators', () => {
+    expect(impact.getCasesForVentilatorsByRequestedTime()).toBe(2250342)
+})
+
+it ('test passes for correct getDollarsInFlight', () => {
+    expect(impact.getDollarsInFlight()).toBe(12484899635.2)
 })

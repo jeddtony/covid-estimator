@@ -25,6 +25,14 @@ class SevereImpact {
         return Math.ceil(availableBeds - severeCasesByRequestedTime);
     }
 
+    getCasesForICUByRequestTime() {
+        return percentageConstant.NEEDING_ICU_CARE * this.getInfectionsByRequestedTime();
+    }
+    
+    getCasesForVentilatorsByRequestedTime() {
+        return percentageConstant.NEEDING_VENTILATORS * this.getInfectionsByRequestedTime();
+    }
+
 }
 
 module.exports = SevereImpact

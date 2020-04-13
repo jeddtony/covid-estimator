@@ -2,10 +2,12 @@ const {getInfectionRatePerDays} = require('../helpers/infectionRateConverter')
 const percentageConstant = require('../constants/percentageConstants');
 class Impact {
 
-    constructor(reportedCases, numberOfDays, hopsitalBeds ){
-        this.reportedCases = Number(reportedCases);
-        this.numberOfDays = Number(numberOfDays)
-        this.hopsitalBeds = Number(hopsitalBeds);
+    constructor(reportedCases, numberOfDays, hopsitalBeds , avgEarning, avgDailyIncomePopulation){
+        this.reportedCases = Number (reportedCases);
+        this.numberOfDays = Number (numberOfDays)
+        this.hopsitalBeds = Number (hopsitalBeds);
+        this.avgEarning = Number (avgEarning);
+        this.avgDailyIncomePopulation = Number(avgDailyIncomePopulation);
     }
 
     getCurrentlyInfected() {
@@ -29,7 +31,11 @@ class Impact {
     }
     
     getCasesForVentilatorsByRequestedTime() {
-        return 
+        return Math.floor(percentageConstant.NEEDING_VENTILATORS * this.getInfectionsByRequestedTime());
+    }
+
+    getDollarsInFlight() {
+        return Number((this.getInfectionsByRequestedTime() * this.avgDailyIncomePopulation * this.avgEarning * this.numberOfDays).toFixed(1));
     }
 
 }
