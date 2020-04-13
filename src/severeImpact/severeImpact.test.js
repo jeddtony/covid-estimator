@@ -1,6 +1,6 @@
 const SevereImpact = require('./severeImpact')
 
-const impact = new SevereImpact(2747, 38, 678874);
+const impact = new SevereImpact(2747, 38, 678874,  4, 0.73);
 it('test passes for correct severeImpact on currently infected', () => {
     expect(impact.getCurrentlyInfected()).toBe(137350)
 })
@@ -14,8 +14,12 @@ it('test passes for correct getInfectionsRequestedByTime', () => {
     expect(impact.getInfectionsByRequestedTime()).toBe(562585600)
 });
 
-it ('test passes for correct getSevereCasesByRequestedTime', () => {
-    expect(impact.getSevereCasesByRequestedTime()).toBe(-84150234)
+it('test passes for correct getInfectionsRequestedByTime', () => { 
+    expect(impact.getSevereCasesByRequestedTime()).toBe(84387840)
+})
+
+it ('test passes for correct getAvailableBeds', () => {
+    expect(impact.getAvailableBeds()).toBe(-84150234)
 })
 
 it ('test passes for correct getSevereCasesForICU', () => {
@@ -24,4 +28,8 @@ it ('test passes for correct getSevereCasesForICU', () => {
 
 it ('test passes for correct getCasesForVentilators', () => {
     expect(impact.getCasesForVentilatorsByRequestedTime()).toBe(11251712)
+});
+
+it ('test passes for correct getSevereDollarsInFlight', () => {
+    expect(impact.getDollarsInFlight()).toBe(62424498176)
 })

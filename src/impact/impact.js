@@ -20,10 +20,13 @@ class Impact {
     }
 
     getSevereCasesByRequestedTime() {
-        let severeCasesByRequestedTime =  percentageConstant.SEVERE_POSITIVE_CASES * this.getInfectionsByRequestedTime();
+        return percentageConstant.SEVERE_POSITIVE_CASES * this.getInfectionsByRequestedTime();
+    }
+
+    getHospitalBedByRequestedTime() {
         let availableBeds = percentageConstant.AVAILABLE_BEDS * this.hopsitalBeds;
 
-        return Math.ceil(availableBeds - severeCasesByRequestedTime);
+        return Math.ceil(availableBeds - this.getSevereCasesByRequestedTime());
     }
 
     getCasesForICUByRequestTime() {

@@ -16,8 +16,12 @@ it('test passes for correct getInfectionsRequestedByTime', () => {
     expect(impact.getInfectionsByRequestedTime()).toBe(112517120)
 })
 
-it ('test passes for correct getSevereCasesByRequestedTime', () => {
-    expect(impact.getSevereCasesByRequestedTime()).toBe(-16639962)
+it('test passes for correct getInfectionsRequestedByTime', () => { 
+    expect(impact.getSevereCasesByRequestedTime()).toBe(16877568)
+})
+
+it ('test passes for correct getHospitalBeds', () => {
+    expect(impact.getHospitalBedByRequestedTime()).toBe(-16639962)
 })
 
 it ('test passes for correct getCasesForICU', () => {

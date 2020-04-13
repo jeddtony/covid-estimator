@@ -3,10 +3,12 @@ const percentageConstant = require('../constants/percentageConstants')
 
 class SevereImpact {
 
-    constructor( reportedCases, numberOfDays, hopsitalBeds) {
+    constructor( reportedCases, numberOfDays, hopsitalBeds,  avgEarning, avgDailyIncomePopulation) {
         this.reportedCases = Number(reportedCases);
         this.numberOfDays = Number(numberOfDays);
         this.hopsitalBeds = Number(hopsitalBeds);
+        this.avgEarning = Number (avgEarning);
+        this.avgDailyIncomePopulation = Number(avgDailyIncomePopulation);
     }
 
     getCurrentlyInfected() {
@@ -19,10 +21,14 @@ class SevereImpact {
     }
 
     getSevereCasesByRequestedTime() {
-        let severeCasesByRequestedTime =  percentageConstant.SEVERE_POSITIVE_CASES * this.getInfectionsByRequestedTime();
+        return percentageConstant.SEVERE_POSITIVE_CASES * this.getInfectionsByRequestedTime();
+       
+    }
+
+    getAvailableBeds() {
         let availableBeds = percentageConstant.AVAILABLE_BEDS * this.hopsitalBeds;
 
-        return Math.ceil(availableBeds - severeCasesByRequestedTime);
+        return Math.ceil(availableBeds - this.getSevereCasesByRequestedTime());
     }
 
     getCasesForICUByRequestTime() {
@@ -33,6 +39,9 @@ class SevereImpact {
         return percentageConstant.NEEDING_VENTILATORS * this.getInfectionsByRequestedTime();
     }
 
+    getDollarsInFlight() {
+        return Number((this.getInfectionsByRequestedTime() * this.avgDailyIncomePopulation * this.avgEarning * this.numberOfDays).toFixed(1));
+    }
 }
 
 module.exports = SevereImpact
