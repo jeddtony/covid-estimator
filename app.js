@@ -10,6 +10,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
+app.get('/', (req, res, next) => {
+  return res.json("This works")
+})
+
+
 app.post('/test', async (req, res, next) => {
   console.log (req.body);
 
